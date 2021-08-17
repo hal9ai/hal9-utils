@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     library: {
-      name: 'hal9-utils',
+      name: 'hal9.utils',
       type: 'umd2',
       export: 'default',
     },
