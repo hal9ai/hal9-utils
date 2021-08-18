@@ -61,10 +61,39 @@ const createLegend = ({ names, colors, values }) => {
   return legendDiv;
 };
 
+const isArquero = function(x) {
+  return x && typeof(x.columnNames) === 'function';
+}
+
+const isDanfo = function(x) {
+  return x && typeof(x.col_data_tensor) === 'object';
+}
+
+const toRowsFromArquero = async function(x) {
+  var rows = [];
+  x.scan(function(i, data) {
+    const row = Object.fromEntries(Object.keys(data).map(e => [e, data[e].get(i)]));
+    rows.push(row);
+  }, true);
+
+  return rows;
+}
+
+const toRowsFromDanfo = async function(x) {
+  return JSON.parse(await x.to_json())
+}
+
+const toRows = async function(x) {
+  if (isArquero(x)) return toRowsFromArquero(x);
+  else if (isDanfo(x)) return toRowsFromDanfo(x);
+  return x;
+}
+
 export default {
   utils: {
     createLegend: createLegend,
     wrapper: wrapper,
     convert: convert,
+    toRows: toRows,
   }
 };

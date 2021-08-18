@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].js',
     library: {
       name: 'hal9',
-      type: 'umd2',
+      type: 'assign-properties',
       export: 'default',
     },
     path: path.resolve(__dirname, 'dist'),
