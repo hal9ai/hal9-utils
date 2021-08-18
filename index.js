@@ -62,7 +62,9 @@ const createLegend = ({ names, colors, values }) => {
 };
 
 export default {
-  createLegend: createLegend,
-  wrapper: wrapper,
-  convert: convert,
+  utils: {
+    createLegend: createLegend,
+    wrapper: wrapper,
+    convert: convert,
+  }
 };
