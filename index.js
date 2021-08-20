@@ -89,11 +89,22 @@ const toRows = async function(x) {
   return x;
 }
 
+const toArqueroFromRows = function(x) {
+  return aq.from(x);
+}
+
+const toArquero = async function(x) {
+  if (isArquero(x)) return x;
+  else if (isDanfo(x)) return toArqueroFromRows(toRowsFromDanfo(x));
+  return toArqueroFromRows(x);
+}
+
 export default {
   utils: {
     createLegend: createLegend,
     wrapper: wrapper,
     convert: convert,
     toRows: toRows,
+    toArquero: toArquero,
   }
 };
