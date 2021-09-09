@@ -62,7 +62,7 @@ const createLegend = ({ names, colors, values }) => {
 };
 
 const isArquero = function(x) {
-  return x && typeof(x.columnNames) === 'function';
+  return x && typeof(x._data) === 'object';
 }
 
 const isDanfo = function(x) {
@@ -83,8 +83,22 @@ const toRowsFromDanfo = async function(x) {
   return JSON.parse(await x.to_json())
 }
 
+const arqueroEnsure = (e) => {
+  if (typeof(aq) == 'undefined') return e;
+
+  var columns = {};
+  var data = e._data;
+
+  Object.keys(data).forEach(e => columns[e] = data[e].data);
+
+  return aq.table(columns);
+}
+
 const toRows = async function(x) {
-  if (isArquero(x)) return toRowsFromArquero(x);
+  if (isArquero(x)) {
+    x = arqueroEnsure(x);
+    return toRowsFromArquero(x);
+  }
   else if (isDanfo(x)) return toRowsFromDanfo(x);
   return x;
 }
