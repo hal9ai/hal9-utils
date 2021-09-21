@@ -84,7 +84,7 @@ const toRowsFromDanfo = async function(x) {
 }
 
 const arqueroEnsure = (e) => {
-  if (typeof(aq) == 'undefined') return e;
+  if (typeof(aq) == 'undefined' || typeof(e.columns) == 'function') return e;
 
   var columns = {};
   var data = e._data;
