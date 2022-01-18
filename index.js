@@ -69,6 +69,10 @@ const isDanfo = function(x) {
   return x && typeof(x.col_data_tensor) === 'object';
 }
 
+const isPyodide = function(x) {
+  return x && x.type === 'DataFrame';
+}
+
 const toRowsFromArquero = async function(x) {
   var rows = [];
   x.scan(function(i, data) {
@@ -81,6 +85,10 @@ const toRowsFromArquero = async function(x) {
 
 const toRowsFromDanfo = async function(x) {
   return JSON.parse(await x.to_json())
+}
+
+const toRowsFromPyodide = async function(x) {
+  return JSON.parse(x.to_json(undefined, 'records'))
 }
 
 const arqueroEnsure = (e) => {
@@ -99,6 +107,7 @@ const toRows = async function(x) {
     x = arqueroEnsure(x);
     return toRowsFromArquero(x);
   }
+  else if (isPyodide(x)) return toRowsFromPyodide(x);
   else if (isDanfo(x)) return toRowsFromDanfo(x);
   return x;
 }
