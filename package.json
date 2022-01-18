@@ -1,6 +1,6 @@
 {
   "name": "hal9-utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license" : "MIT",
   "description": "Hal9 Utils: Utilities for data processing and visualization",
   "main": "dist/hal9-utils.js",
