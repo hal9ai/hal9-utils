@@ -62,7 +62,7 @@ const createLegend = ({ names, colors, values }) => {
 };
 
 const isArquero = function(x) {
-  return x && typeof(e.toJs) !== 'function' && typeof(x._data) === 'object';
+  return x && typeof(x.toJs) !== 'function' && typeof(x._data) === 'object';
 }
 
 const isDanfo = function(x) {
