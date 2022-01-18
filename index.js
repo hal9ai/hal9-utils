@@ -118,8 +118,8 @@ const toArqueroFromRows = function(x) {
 
 const toArquero = async function(x) {
   if (isArquero(x)) return x;
-  else if (isPyodide(x)) return toArqueroFromRows(toRowsFromPyodide(x));
-  else if (isDanfo(x)) return toArqueroFromRows(toRowsFromDanfo(x));
+  else if (isPyodide(x)) return toArqueroFromRows(await toRowsFromPyodide(x));
+  else if (isDanfo(x)) return toArqueroFromRows(await toRowsFromDanfo(x));
   return toArqueroFromRows(x);
 }
 
