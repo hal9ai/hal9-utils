@@ -87,7 +87,7 @@ const toRowsFromDanfo = async function(x) {
   return JSON.parse(await x.to_json())
 }
 
-const toRowsFromPyodide = async function(x) {
+const toRowsFromPyodide = function(x) {
   return JSON.parse(x.to_json(undefined, 'records'))
 }
 
@@ -118,7 +118,7 @@ const toArqueroFromRows = function(x) {
 
 const toArquero = async function(x) {
   if (isArquero(x)) return x;
-  else if (isPyodide(x)) return toArqueroFromRows(await toRowsFromPyodide(x));
+  else if (isPyodide(x)) return toArqueroFromRows(toRowsFromPyodide(x));
   else if (isDanfo(x)) return toArqueroFromRows(await toRowsFromDanfo(x));
   return toArqueroFromRows(x);
 }
@@ -130,5 +130,6 @@ export default {
     convert: convert,
     toRows: toRows,
     toArquero: toArquero,
+    isArquero: isArquero,
   }
 };
