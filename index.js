@@ -1,3 +1,5 @@
+import { addTooltips } from './tooltips.js'
+
 const isDate = str => {
   if(str.toString() === parseFloat(str).toString()) return false;
 
@@ -131,5 +133,6 @@ export default {
     toRows: toRows,
     toArquero: toArquero,
     isArquero: isArquero,
+    addTooltips: addTooltips,
   }
 };
