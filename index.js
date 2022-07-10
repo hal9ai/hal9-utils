@@ -1,5 +1,7 @@
 import { addTooltips } from './tooltips.js'
 
+require('polyfill-object.fromentries');
+
 const isDate = str => {
   if(str.toString() === parseFloat(str).toString()) return false;
 
